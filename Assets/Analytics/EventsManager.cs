@@ -31,7 +31,7 @@ public class EventsManager : MonoBehaviour
     {
         if (events.Count > 0)
         {
-            print(events.Count.ToString()); 
+           
             StartCoroutine(SendRequest(serverURL, UnityEngine.JsonUtility.ToJson(events)));
            
         }
@@ -75,7 +75,7 @@ public class EventsManager : MonoBehaviour
         request.uploadHandler = new UploadHandlerRaw(jsonToSend);
         request.downloadHandler = new DownloadHandlerBuffer();
         request.SetRequestHeader("Content-Type", "application/json");
-        print("1");
+        
         
         yield return request.SendWebRequest();
 
