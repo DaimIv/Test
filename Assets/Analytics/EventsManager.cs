@@ -25,12 +25,13 @@ public class EventsManager : MonoBehaviour
             events = new List<POSTMessage>();
 
         }
-        sendTimer = new Timer(SendPOST, null, 0, cooldownBeforeSend);
+        sendTimer = new Timer(SendPOST, null, 0, cooldownBeforeSend*1000);
     }
     void SendPOST(object unused)
     {
         if (events.Count > 0)
         {
+            print(events.Count.ToString()); 
             StartCoroutine(SendRequest(serverURL, UnityEngine.JsonUtility.ToJson(events)));
            
         }
@@ -74,7 +75,7 @@ public class EventsManager : MonoBehaviour
         request.uploadHandler = new UploadHandlerRaw(jsonToSend);
         request.downloadHandler = new DownloadHandlerBuffer();
         request.SetRequestHeader("Content-Type", "application/json");
-
+        print("1");
         
         yield return request.SendWebRequest();
 

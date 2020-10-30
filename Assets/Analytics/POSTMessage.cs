@@ -23,7 +23,7 @@ namespace Assets.Analytics
             if(data is ICustomParams && args != null)
             {
                 MethodInfo method = messageType.GetMethod("AddMoreInfo");
-                method.Invoke(data, args);
+                method.Invoke(data,new object[1] { args });
             }
         }
 
@@ -62,7 +62,7 @@ namespace Assets.Analytics
 
         public void AddMoreInfo(object[] args)
         {
-            price = Convert.ToInt32(args[0]);
+            price = Convert.ToInt32(args[0].ToString());
             id = args[1].ToString();
         }
     }
